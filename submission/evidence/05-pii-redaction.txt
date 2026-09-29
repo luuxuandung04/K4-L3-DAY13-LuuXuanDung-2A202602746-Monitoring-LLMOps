@@ -1,0 +1,15 @@
+{
+  "service": "api",
+  "payload": {
+    "message_preview": "What is your refund policy? My email is [REDACTED_EMAIL]"
+  },
+  "event": "request_received",
+  "env": "dev",
+  "user_id_hash": "2055254ee30a",
+  "session_id": "s01",
+  "correlation_id": "req-63a71f7e",
+  "feature": "qa",
+  "model": "claude-sonnet-4-5",
+  "level": "info",
+  "ts": "2026-09-29T09:34:39.390717Z"
+}

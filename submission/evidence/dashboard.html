@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>K4-L3A Day 13 Monitoring & LLMOps Dashboard</title>
+<style>
+  :root {
+    --bg: #0b0f19;
+    --card: #151d30;
+    --border: #232e48;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --accent: #3b82f6;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    padding: 24px;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; color: #fff; }
+  .header .meta { color: var(--text-muted); font-size: 13px; }
+  .badge {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .metric-main {
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .metric-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    gap: 12px;
+  }
+  .metric-sub span strong { color: var(--text); }
+  .threshold-bar {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+  }
+  .chart-container {
+    display: flex;
+    align-items: flex-end;
+    height: 70px;
+    margin-top: 16px;
+    padding-top: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>K4-L3A Day 13 — Monitoring & LLMOps Dashboard</h1>
+      <div class="meta">Học viên: Lưu Xuân Dũng (2A202602746) &bull; Project: day13-k4-l3a-2A202602746 &bull; Window: 60m &bull; Refresh: 30s</div>
+    </div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <span class="badge">&bull; RUNTIME LIVE</span>
+      <span style="font-size:12px; color:var(--text-muted);">Contract: 6/6 Panels</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <!-- Panel 1: Latency -->
+    <div class="card" id="panel-latency">
+      <div>
+        <div class="card-header">
+          <span class="card-title">Panel 1: Latency & TTFT</span>
+          <span style="font-size:12px; color:var(--text-muted);">unit: ms</span>
+        </div>
+        <div class="metric-main">2654 <span style="font-size:16px; font-weight:normal; color:var(--text-muted);">ms (P95)</span></div>
+        <div class="metric-sub">
+          <span>P50: <strong>153ms</strong></span>
+          <span>P99: <strong>2654ms</strong></span>
+          <span>TTFT P95: <strong>50ms</strong></span>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div style="flex:1; margin:0 2px; background:#10b981; height:36px; border-radius:2px;" title="1099ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="152ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="152ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="153ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="152ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="153ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="153ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="154ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="151ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="152ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="152ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="152ms"></div><div style="flex:1; margin:0 2px; background:#10b981; height:10px; border-radius:2px;" title="152ms"></div><div style="flex:1; margin:0 2px; background:#ef4444; height:88px; border-radius:2px;" title="2653ms"></div><div style="flex:1; margin:0 2px; background:#ef4444; height:88px; border-radius:2px;" title="2652ms"></div><div style="flex:1; margin:0 2px; background:#ef4444; height:88px; border-radius:2px;" title="2654ms"></div><div style="flex:1; margin:0 2px; background:#ef4444; height:88px; border-radius:2px;" title="2654ms"></div><div style="flex:1; margin:0 2px; background:#ef4444; height:88px; border-radius:2px;" title="2653ms"></div>
+      </div>
+      <div class="threshold-bar">
+        <span>SLO Target: P95 &le; 3000ms</span>
+        <span style="color:var(--success); font-weight:600;">PASS</span>
+      </div>
+    </div>
+
+    <!-- Panel 2: Traffic -->
+    <div class="card" id="panel-traffic">
+      <div>
+        <div class="card-header">
+          <span class="card-title">Panel 2: Request Traffic</span>
+          <span style="font-size:12px; color:var(--text-muted);">unit: req/min</span>
+        </div>
+        <div class="metric-main">18 <span style="font-size:16px; font-weight:normal; color:var(--text-muted);">requests</span></div>
+        <div class="metric-sub">
+          <span>Throughput: <strong>6.9 req/min</strong></span>
+          <span>Window: <strong>Last 60m</strong></span>
+        </div>
+      </div>
+      <div class="threshold-bar">
+        <span>Threshold: rate &ge; 1 req/min</span>
+        <span style="color:var(--success); font-weight:600;">ACTIVE</span>
+      </div>
+    </div>
+
+    <!-- Panel 3: Errors & Retrieval -->
+    <div class="card" id="panel-errors">
+      <div>
+        <div class="card-header">
+          <span class="card-title">Panel 3: Errors & Retrieval</span>
+          <span style="font-size:12px; color:var(--text-muted);">unit: %</span>
+        </div>
+        <div class="metric-main">0.0% <span style="font-size:16px; font-weight:normal; color:var(--text-muted);">error rate</span></div>
+        <div class="metric-sub">
+          <span>Retrieval Success: <strong>100.0%</strong></span>
+          <span>Breakdown: <strong>0 timeout</strong></span>
+        </div>
+      </div>
+      <div class="threshold-bar">
+        <span>Threshold: Error Rate &le; 2.0%</span>
+        <span style="color:var(--success); font-weight:600;">PASS</span>
+      </div>
+    </div>
+
+    <!-- Panel 4: Cost -->
+    <div class="card" id="panel-cost">
+      <div>
+        <div class="card-header">
+          <span class="card-title">Panel 4: Cost Over Time</span>
+          <span style="font-size:12px; color:var(--text-muted);">unit: USD</span>
+        </div>
+        <div class="metric-main">$0.0397 <span style="font-size:16px; font-weight:normal; color:var(--text-muted);">total</span></div>
+        <div class="metric-sub">
+          <span>Avg / request: <strong>$0.00221</strong></span>
+        </div>
+      </div>
+      <div class="threshold-bar">
+        <span>Threshold: Total Cost &le; $2.50</span>
+        <span style="color:var(--success); font-weight:600;">PASS</span>
+      </div>
+    </div>
+
+    <!-- Panel 5: Tokens -->
+    <div class="card" id="panel-tokens">
+      <div>
+        <div class="card-header">
+          <span class="card-title">Panel 5: Input & Output Tokens</span>
+          <span style="font-size:12px; color:var(--text-muted);">unit: tokens</span>
+        </div>
+        <div class="metric-main">3140 <span style="font-size:16px; font-weight:normal; color:var(--text-muted);">tokens</span></div>
+        <div class="metric-sub">
+          <span>Input: <strong>615</strong></span>
+          <span>Output: <strong>2525</strong></span>
+        </div>
+      </div>
+      <div class="threshold-bar">
+        <span>Threshold: Sum tokens &le; 50,000</span>
+        <span style="color:var(--success); font-weight:600;">PASS</span>
+      </div>
+    </div>
+
+    <!-- Panel 6: Quality -->
+    <div class="card" id="panel-quality">
+      <div>
+        <div class="card-header">
+          <span class="card-title">Panel 6: Quality Proxy</span>
+          <span style="font-size:12px; color:var(--text-muted);">unit: score [0-1]</span>
+        </div>
+        <div class="metric-main">0.856 <span style="font-size:16px; font-weight:normal; color:var(--text-muted);">/ 1.0</span></div>
+        <div class="metric-sub">
+          <span>Heuristic: <strong>Grounding & Conciseness</strong></span>
+        </div>
+      </div>
+      <div class="threshold-bar">
+        <span>Threshold: Mean Quality &ge; 0.75</span>
+        <span style="color:var(--success); font-weight:600;">PASS</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
